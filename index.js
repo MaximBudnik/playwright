@@ -36,13 +36,14 @@ const f = async ({ entrepreneurId }) => {
     }
 }
 
-const express = require('express')
-const app = express()
 
-app.get('/', async (req, res) => {
-    console.log('resolved')
+const app = require('express')();
+const { v4 } = require('uuid');
+
+app.get('/api', async (req, res) => {
     const data = await f({entrepreneurId: "14312364"})
-    res.json({data})
-})
+    console.log(data)
+    res.end(data);
+});
 
-app.listen(process.env.PORT || 8081)
+module.exports = app;
